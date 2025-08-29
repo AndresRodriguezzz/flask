@@ -80,4 +80,4 @@ docker compose down
 - Puedes modificar las credenciales y nombre de la base de datos en `docker-compose.yaml` y `config.py`.
 - Si necesitas instalar dependencias adicionales, agrégalas a `requirements.txt` y reconstruye la imagen con `docker compose up --build`.
 
----
+
