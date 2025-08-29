@@ -1,0 +1,83 @@
+# Despliegue del Proyecto Flask con Web Scraping y PostgreSQL usando Docker
+
+Este proyecto realiza web scraping, almacena los datos en PostgreSQL y expone una API con Flask. El despliegue se realiza con Docker y Docker Compose.
+
+---
+
+## Requisitos previos
+
+- **Sistema operativo:** Linux (recomendado Ubuntu/Debian)
+- **Acceso a terminal con permisos de administrador**
+
+---
+
+## Instalación de Docker y Docker Compose
+
+### 1. Instalar Docker
+
+```bash
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+### 2. Verificar instalación
+
+```bash
+docker --version
+docker compose version
+```
+
+---
+
+## Despliegue del proyecto
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/tu_usuario/tu_repositorio.git
+cd tu_repositorio/flask
+```
+
+### 2. Construir y levantar los servicios
+
+```bash
+docker compose up --build
+```
+
+Esto levantará:
+- **db:** Base de datos PostgreSQL con persistencia de datos
+- **web:** Aplicación Flask con la API y el scraper
+
+### 3. Acceder a la API
+
+- La API estará disponible en `http://localhost:8000`
+- Endpoints principales:
+  - `GET /scrape` : Realiza scraping y guarda los datos en la base de datos
+  - `POST /add_data` : Guarda datos manualmente
+  - `GET /data` : Consulta todos los registros
+  - `PUT /data/<id>` : Actualiza un registro
+  - `DELETE /data/<id>` : Elimina un registro
+
+### 4. Detener los servicios
+
+```bash
+docker compose down
+```
+
+---
+
+## Notas
+
+- El volumen `db_data` asegura que los datos de PostgreSQL sean persistentes.
+- Puedes modificar las credenciales y nombre de la base de datos en `docker-compose.yaml` y `config.py`.
+- Si necesitas instalar dependencias adicionales, agrégalas a `requirements.txt` y reconstruye la imagen con `docker compose up --build`.
+
+---

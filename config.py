@@ -1,0 +1,2 @@
+SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:586613@localhost:5432/pruebas'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
