@@ -16,4 +16,4 @@ app.register_blueprint(bp)  # Registra el blueprint con las rutas en la aplicaci
 if __name__ == '__main__':  # Si el archivo se ejecuta directamente
     with app.app_context():  # Crea el contexto de la aplicación
         db.create_all()  # Crea todas las tablas en la base de datos si no existen
-    app.run(debug=True, port=8000)  # Inicia el servidor Flask en modo debug y puerto 8000
+    app.run(debug=True, port=8001)  # Inicia el servidor Flask en modo debug y puerto 8000
