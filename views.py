@@ -138,7 +138,7 @@ def scrape_bs():
     """
     Realiza web scraping usando requests y BeautifulSoup y guarda los datos en la tabla ScrapedData.
     """
-    url = 'https://corferias.com/'  # URL de la página a scrapear
+    url = 'https://www.tiendanube.com/blog/ejemplos-paginas-web-estaticas/'  # URL de la página a scrapear
     response = requests.get(url)  # Realiza la petición HTTP
     soup = BeautifulSoup(response.text, 'html.parser')  # Analiza el HTML de la respuesta
 
